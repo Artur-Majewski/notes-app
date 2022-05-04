@@ -1,4 +1,5 @@
 interface NoteData {
+  id: string;
 	title: string;
 	content: string;
 	category: string;
@@ -7,6 +8,7 @@ interface NoteData {
 
 export const noteData: NoteData[] = [
 	{
+    id: '1',
 		title: 'First title',
 		category: 'Wrok',
 		content:
@@ -14,6 +16,7 @@ export const noteData: NoteData[] = [
 		createAt: 1651266412312,
 	},
   {
+    id: '2',
 		title: 'Second title',
 		category: 'Wrok',
 		content:
