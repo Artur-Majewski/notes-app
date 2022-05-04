@@ -3,11 +3,13 @@
   height: 300px;
   border-radius: 10px;
   background: rgba(#fff, $alpha: 1.0);
+  margin: 10px;
 }
 
 .titleBlock {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
   padding: 5px;
   border-bottom: 1px solid black;
@@ -17,4 +19,9 @@
 
 .content {
   padding: 5px;
+}
+
+.date {
+  width: 100%;
+  margin-left: 10px;
 }
