@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { NotesList } from '../../molecules/NotesList/NotesList';
 import styles from './Main.module.scss';
-import { noteData } from '../../../data/data';
 import { AddNoteBlock } from '../../molecules/AddNoteWindow/AddNoteWindow';
 import { Search } from '../../molecules/Search/Search';
 
@@ -14,10 +13,21 @@ interface NoteData {
 	createAt: number;
 }
 
+const loadData = () => {
+	const sevedNotes = localStorage.getItem('noteList');
+		if (sevedNotes) {
+			return JSON.parse(sevedNotes)
+		}
+}
+
 export const Main = () => {
-	const [notes, setNotes] = useState(noteData);
+	const [notes, setNotes] = useState<NoteData[]>(loadData());
 	const [isAddNoteActiv, setIsAddNoteActiv] = useState(false);
 	const [searchNote, setSearchNote] = useState('');
+
+	useEffect( () => {
+		localStorage.setItem('noteList', JSON.stringify(notes))
+	}, [notes]) 
 
 	const handleAddNoteToggle = () => setIsAddNoteActiv((prev) => !prev);
 
@@ -45,10 +55,13 @@ export const Main = () => {
 		<main className={styles.wrapper}>
 			<Search searchNote={setSearchNote} />
 			<h2>Note List:</h2>
-			<NotesList
-				noteData={handleFilterNote(searchNote)}
-				removeNote={handleRemoveNote}
-			/>
+			{
+				notes.length > 0 ? 
+				<NotesList noteData={handleFilterNote(searchNote)} removeNote={handleRemoveNote} /> 
+				: 
+				<h3> You do not have any notes yet </ h3>
+			}
+			
 			<button onClick={handleAddNoteToggle}>Add</button>
 			{isAddNoteActiv ? (
 				<AddNoteBlock
