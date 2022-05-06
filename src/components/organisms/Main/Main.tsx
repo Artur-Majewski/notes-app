@@ -1,12 +1,13 @@
-import { useState } from "react";
-import {v4 as uuid} from 'uuid'
-import { NotesList } from "../../molecules/NotesList/NotesList";
-import styles from './Main.module.scss'
-import { noteData } from "../../../data/data";
-import { AddNoteBlock } from "../../molecules/AddNoteWindow/AddNoteWindow";
+import { useState } from 'react';
+import { v4 as uuid } from 'uuid';
+import { NotesList } from '../../molecules/NotesList/NotesList';
+import styles from './Main.module.scss';
+import { noteData } from '../../../data/data';
+import { AddNoteBlock } from '../../molecules/AddNoteWindow/AddNoteWindow';
+import { Search } from '../../molecules/Search/Search';
 
 interface NoteData {
-  id: string;
+	id: string;
 	title: string;
 	content: string;
 	category: string;
@@ -14,33 +15,47 @@ interface NoteData {
 }
 
 export const Main = () => {
-	const [notes , setNotes] = useState(noteData);
+	const [notes, setNotes] = useState(noteData);
 	const [isAddNoteActiv, setIsAddNoteActiv] = useState(false);
+	const [searchNote, setSearchNote] = useState('');
 
-	const handleAddNoteToggle = () => setIsAddNoteActiv( prev => !prev)
+	const handleAddNoteToggle = () => setIsAddNoteActiv((prev) => !prev);
 
 	const handleRemoveNote = (id?: string) => {
-		const newNoteList = notes.filter(note => note.id !== id)
-		setNotes(newNoteList)
-	}
-	
+		const newNoteList = notes.filter((note) => note.id !== id);
+		setNotes(newNoteList);
+	};
+
 	const handleAddNote = (title: string, category: string, content: string) => {
 		const newNote: NoteData = {
 			id: uuid(),
 			title: title,
 			category: category,
 			content: content,
-			createAt: new Date().getTime()
-		}
-		setNotes([...notes, newNote])
-	}
+			createAt: new Date().getTime(),
+		};
+		setNotes([...notes, newNote]);
+	};
+
+	const handleFilterNote = (searchText: string) => {
+		return notes.filter((note) => note.content.includes(searchText) || note.title.includes(searchText));
+	};
 
 	return (
 		<main className={styles.wrapper}>
+			<Search searchNote={setSearchNote} />
 			<h2>Note List:</h2>
-      <NotesList noteData={notes} removeNote={handleRemoveNote}/>
+			<NotesList
+				noteData={handleFilterNote(searchNote)}
+				removeNote={handleRemoveNote}
+			/>
 			<button onClick={handleAddNoteToggle}>Add</button>
-			{isAddNoteActiv ? <AddNoteBlock handleAddNote={handleAddNote} handleAddNoteClose={handleAddNoteToggle}/> : null}
+			{isAddNoteActiv ? (
+				<AddNoteBlock
+					handleAddNote={handleAddNote}
+					handleAddNoteClose={handleAddNoteToggle}
+				/>
+			) : null}
 		</main>
 	);
 };

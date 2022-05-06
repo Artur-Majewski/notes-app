@@ -1,0 +1,28 @@
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  // padding: 10px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+
+  & i {
+    padding: 10px;
+    font-size: 1.5rem;
+  }
+}
+
+.searchInput {
+  flex-grow: 1;
+  height: calc(20px + 1.5rem);
+  padding-left: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  background: transparent;
+
+  &:focus {
+    outline: none;
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
