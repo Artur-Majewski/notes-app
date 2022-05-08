@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { NotesList } from '../../molecules/NotesList/NotesList';
 import styles from './Main.module.scss';
-import { AddNoteBlock } from '../../molecules/AddNoteWindow/AddNoteWindow';
+import { AddNoteWindow } from '../../molecules/AddNoteWindow/AddNoteWindow';
 import { Search } from '../../molecules/Search/Search';
 
 interface NoteData {
@@ -36,16 +36,16 @@ export const Main = () => {
 		setNotes(newNoteList);
 	};
 
-	const handleAddNote = (title: string, category: string, content: string) => {
-		const newNote: NoteData = {
-			id: uuid(),
-			title: title,
-			category: category,
-			content: content,
-			createAt: new Date().getTime(),
-		};
-		setNotes([...notes, newNote]);
-	};
+	// const handleAddNote = (title: string, category: string, content: string) => {
+	// 	const newNote: NoteData = {
+	// 		id: uuid(),
+	// 		title: title,
+	// 		category: category,
+	// 		content: content,
+	// 		createAt: new Date().getTime(),
+	// 	};
+	// 	setNotes([...notes, newNote]);
+	// };
 
 	const handleFilterNote = (searchText: string) => {
 		return notes.filter((note) => note.content.includes(searchText) || note.title.includes(searchText));
@@ -64,8 +64,8 @@ export const Main = () => {
 			
 			<button onClick={handleAddNoteToggle}>Add</button>
 			{isAddNoteActiv ? (
-				<AddNoteBlock
-					handleAddNote={handleAddNote}
+				<AddNoteWindow
+					// handleAddNote={handleAddNote}
 					handleAddNoteClose={handleAddNoteToggle}
 				/>
 			) : null}

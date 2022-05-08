@@ -1,12 +1,15 @@
 import { ChangeEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addNote } from "../../../Redux/features/notes/notes-slice";
 import styles from './AddNoteWindow.module.scss'
 
 interface Props {
-handleAddNote: (title: string, category: string, content: string) => void;
+// handleAddNote: (title: string, category: string, content: string) => void;
 handleAddNoteClose: () => void;
 }
 
-export const AddNoteBlock = ({handleAddNote , handleAddNoteClose}: Props) => {
+export const AddNoteWindow = ({ handleAddNoteClose}: Props) => {
+  const dispatch = useDispatch()
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [content, setContent] = useState('');
@@ -15,7 +18,7 @@ export const AddNoteBlock = ({handleAddNote , handleAddNoteClose}: Props) => {
   const handleCategoryChange = (event: ChangeEvent<HTMLSelectElement>) => setCategory(event.currentTarget.value)
   const handleContentChange = (event: ChangeEvent<HTMLTextAreaElement>) => setContent(event.currentTarget.value)
   const handleSubmit = () => {
-    handleAddNote(title, category, content)
+    dispatch(addNote({title, category, content}))
     handleAddNoteClose();
   }
 
