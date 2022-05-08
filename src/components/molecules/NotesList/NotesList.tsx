@@ -30,7 +30,7 @@ export const NotesList = ({ noteData, removeNote }: Props) => {
 					title={title}
 					content={content}
 					createAt={createAt}
-          removeNote={removeNote}
+          // removeNote={removeNote}
 				/>
 			))}
 		</section>

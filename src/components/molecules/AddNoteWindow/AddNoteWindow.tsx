@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addNote } from "../../../Redux/features/notes/notes-slice";
+import { addNote } from "../../../Redux/actions/note";
 import styles from './AddNoteWindow.module.scss'
 
 interface Props {

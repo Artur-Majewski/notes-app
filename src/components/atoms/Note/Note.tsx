@@ -6,15 +6,16 @@ interface Props {
 	title: string;
 	content: string;
 	createAt: number;
-	removeNote: (id?: string) => void;
+	// removeNote: (id?: string) => void;
 }
 
-export const Note = ({id, title, content, createAt, removeNote}: Props) => {
+export const Note = ({id, title, content, createAt}: Props) => {
+	
 	return (
 		<div className={styles.note}>
 			<div className={styles.titleBlock}>
 				<h3 className={styles.title}>{title}</h3>
-				<Button name='X' functionality={removeNote} id={id}/>
+				<Button name='X' id={id}/>
 				<small className={styles.date}>{new Date(createAt).toLocaleDateString()}</small>
 			</div>
 			<p className={styles.content}>{content}</p>
