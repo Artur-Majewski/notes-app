@@ -30,17 +30,22 @@ export const Main = () => {
 		<main className={styles.wrapper}>
 			<Search searchNote={setSearchNote} />
 			<h2>Note List:</h2>
-			{notes.length > 0 ? (
-				<NotesList noteData={handleFilterNote(searchNote)} />
-			) : (
-				<h3> You do not have any notes yet </h3>
-			)}
-
-			<button onClick={handleAddNoteToggle}>Add</button>
-			{isAddNoteActiv ? (
-				<AddNoteWindow handleAddNoteClose={handleAddNoteToggle} />
-			) : null}
-			{currentNote.length > 0 ? <EditNoteWindow /> : null}
+			<div className={styles.mainInternalWrapper}>
+				<div>
+					{notes.length > 0 ? (
+						<NotesList noteData={handleFilterNote(searchNote)} />
+					) : (
+						<h3> You do not have any notes yet </h3>
+					)}
+					<button onClick={handleAddNoteToggle}>Add</button>
+				</div>
+				<div>
+					{isAddNoteActiv ? (
+						<AddNoteWindow handleAddNoteClose={handleAddNoteToggle} />
+					) : null}
+					{currentNote.length > 0 ? <EditNoteWindow /> : null}
+				</div>
+			</div>
 		</main>
 	);
 };
