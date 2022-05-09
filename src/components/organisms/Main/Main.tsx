@@ -1,74 +1,46 @@
-import { useEffect, useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../Redux/store';
 import { NotesList } from '../../molecules/NotesList/NotesList';
-import styles from './Main.module.scss';
-import { AddNoteWindow } from '../../molecules/AddNoteWindow/AddNoteWindow';
 import { Search } from '../../molecules/Search/Search';
+import { AddNoteWindow } from '../../molecules/AddNoteWindow/AddNoteWindow';
+import { EditNoteWindow } from '../../molecules/EditNoteWindow/EditNoteWindow';
 
-interface NoteData {
-	id: string;
-	title: string;
-	content: string;
-	category: string;
-	createAt: number;
-}
-
-const loadData = () => {
-	const sevedNotes = localStorage.getItem('noteList');
-		if (sevedNotes) {
-			return JSON.parse(sevedNotes)
-		}
-}
+import styles from './Main.module.scss';
 
 export const Main = () => {
-	const [notes, setNotes] = useState<NoteData[]>(loadData());
+	const { notes, currentNote } = useSelector((store: RootState) => store.notes);
 	const [isAddNoteActiv, setIsAddNoteActiv] = useState(false);
 	const [searchNote, setSearchNote] = useState('');
 
-	useEffect( () => {
-		localStorage.setItem('noteList', JSON.stringify(notes))
-	}, [notes]) 
-
 	const handleAddNoteToggle = () => setIsAddNoteActiv((prev) => !prev);
 
-	const handleRemoveNote = (id?: string) => {
-		const newNoteList = notes.filter((note) => note.id !== id);
-		setNotes(newNoteList);
-	};
-
-	// const handleAddNote = (title: string, category: string, content: string) => {
-	// 	const newNote: NoteData = {
-	// 		id: uuid(),
-	// 		title: title,
-	// 		category: category,
-	// 		content: content,
-	// 		createAt: new Date().getTime(),
-	// 	};
-	// 	setNotes([...notes, newNote]);
-	// };
-
 	const handleFilterNote = (searchText: string) => {
-		return notes.filter((note) => note.content.includes(searchText) || note.title.includes(searchText));
+		searchText = searchText.toLowerCase();
+		return notes
+			.filter(
+				(note) =>
+					note.content.toLowerCase().includes(searchText) ||
+					note.title.toLowerCase().includes(searchText)
+			)
+			.sort((a, b) => a.createAt - b.createAt);
 	};
 
 	return (
 		<main className={styles.wrapper}>
 			<Search searchNote={setSearchNote} />
 			<h2>Note List:</h2>
-			{
-				notes.length > 0 ? 
-				<NotesList noteData={handleFilterNote(searchNote)} removeNote={handleRemoveNote} /> 
-				: 
-				<h3> You do not have any notes yet </ h3>
-			}
-			
+			{notes.length > 0 ? (
+				<NotesList noteData={handleFilterNote(searchNote)} />
+			) : (
+				<h3> You do not have any notes yet </h3>
+			)}
+
 			<button onClick={handleAddNoteToggle}>Add</button>
 			{isAddNoteActiv ? (
-				<AddNoteWindow
-					// handleAddNote={handleAddNote}
-					handleAddNoteClose={handleAddNoteToggle}
-				/>
+				<AddNoteWindow handleAddNoteClose={handleAddNoteToggle} />
 			) : null}
+			{currentNote.length > 0 ? <EditNoteWindow /> : null}
 		</main>
 	);
 };

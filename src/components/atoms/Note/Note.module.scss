@@ -15,7 +15,9 @@
   border-bottom: 1px solid black;
 }
 
-.title {}
+.title {
+  max-width: calc(100% - 60px);
+}
 
 .content {
   padding: 5px;
@@ -24,4 +26,11 @@
 .date {
   width: 100%;
   margin-left: 10px;
+}
+
+.btn {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-left: 5px;
 }

@@ -1,23 +1,20 @@
 import { ChangeEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addNote } from '../../../Redux/actions/note';
-import styles from './AddNoteWindow.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearCurrencyNote, editNote } from '../../../Redux/actions/note';
+import { RootState } from '../../../Redux/store';
+import styles from './EditNoteWindow.module.scss';
 
-interface Props {
-	handleAddNoteClose: () => void;
-}
-
-export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
+export const EditNoteWindow = () => {
 	const dispatch = useDispatch();
+	const { notes, currentNote } = useSelector((store: RootState) => store.notes);
+	const prevNote = notes.filter((note) => note.id === currentNote);
 	const [formValues, setFormValues] = useState({
-		title: '',
-		category: '',
-		content: '',
+		title: prevNote[0].title,
+		category: prevNote[0].category,
+		content: prevNote[0].content,
 	});
 
-	const handleInputChange = (
-		event: ChangeEvent<	HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement > 
-    ) => {
+	const handleInputChange = ( event: ChangeEvent< HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement > ) => {
 		setFormValues({
 			...formValues,
 			[event.target.name]: event.target.value,
@@ -26,20 +23,22 @@ export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 
 	const handleSubmit = () => {
 		dispatch(
-			addNote({
+			editNote({
+				id: prevNote[0].id,
 				title: formValues.title,
 				category: formValues.category,
 				content: formValues.content,
+				createAt: prevNote[0].createAt,
 			})
 		);
-		handleAddNoteClose();
+		dispatch(clearCurrencyNote());
 	};
 
 	return (
 		<>
 			<div
 				className={styles.blockBackground}
-				onClick={handleAddNoteClose}
+				onClick={() => dispatch(clearCurrencyNote())}
 			></div>
 			<section className={styles.addNoteWrapper}>
 				<label htmlFor='title'>Title:</label>
@@ -70,8 +69,8 @@ export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 					value={formValues.content}
 					onChange={handleInputChange}
 				></textarea>
-				<button onClick={handleSubmit}>Add</button>
-				<button onClick={handleAddNoteClose}>Close</button>
+				<button onClick={handleSubmit}>Edit</button>
+				<button onClick={() => dispatch(clearCurrencyNote())}>Close</button>
 			</section>
 		</>
 	);

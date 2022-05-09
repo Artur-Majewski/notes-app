@@ -1,23 +1,18 @@
-import { useDispatch } from 'react-redux';
-import { removeNote } from '../../../Redux/actions/note';
 import styles from './Button.module.scss'
 
 interface Props {
   id?: string;
   name: string;
-  // functionality: (id?:string) => void; 
+  funcionality: (arg?: any) => void
 }
 
-export const Button = ({id, name}: Props) => {
-  const dispatch = useDispatch()
-
-  const handleRemoveNote = () => {
-    if (id) {
-      dispatch(removeNote(id))
-    }
-  }
+export const Button = ({id, name, funcionality}: Props) => {
   
   return (
-    <button onClick={handleRemoveNote} className={styles.btn}> {name} </button>
+    <button  onClick={funcionality} 
+      className={styles.btn}>
+        {name === 'E' ? <i className="fa-solid fa-pencil"></i> : null}
+      {name} 
+    </button>
   )
 }

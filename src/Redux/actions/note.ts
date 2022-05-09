@@ -1,21 +1,26 @@
-import { noteTypes } from "../actionTypes/note";
+import { addNewNote, NoteData } from '../../types/noteTypes';
+import { noteTypes } from '../actionTypes/note';
 
-interface NoteData {
-	id: string;
-	title: string;
-	content: string;
-	category: string;
-	createAt: number;
-}
+export const addNote = (noteData: addNewNote) => ({
+	type: noteTypes.ADD_NOTE,
+	payload: noteData,
+});
 
-type addNewNote = Omit<NoteData, 'id' | 'createAt'>
+export const removeNote = (id: string) => ({
+	type: noteTypes.REMOVE_NOTE,
+	payload: id,
+});
 
-export const  addNote = (noteData: addNewNote) => ({
-  type: noteTypes.ADD_NOTE,
-  payload: noteData
-})
+export const editNote = (newNoteData: NoteData) => ({
+	type: noteTypes.EDIT_NOTE,
+	payload: newNoteData,
+});
 
-export const  removeNote = (id: string) => ({
-  type: noteTypes.REMOVE_NOTE,
-  payload: id
-})
+export const currentNote = (id: string) => ({
+	type: noteTypes.CURRENT_NOTE,
+	payload: id,
+});
+
+export const clearCurrencyNote = () => ({
+	type: noteTypes.CLEAR_CURRENT_NOTE,
+});
