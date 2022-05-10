@@ -24,3 +24,12 @@ export const currentNote = (id: string) => ({
 export const clearCurrencyNote = () => ({
 	type: noteTypes.CLEAR_CURRENT_NOTE,
 });
+
+export const noteToPreview = (id: string) => ({
+	type: noteTypes.NOTE_TO_PREVIEW,
+	payload: id,
+});
+
+export const clearNoteToPreview = () => ({
+	type: noteTypes.CLEAR_NOTE_TO_PREVIEW,
+});

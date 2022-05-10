@@ -13,7 +13,7 @@ export const CategoriesToRemoved = () => {
 			Select a category to delete:
 			<div className={styles.removeBlockWrapper}>
 				{categories.map((category) => (
-					<button
+					<button key={category.id}
 						className={styles.btn}
 						onClick={() => handelRemoveCategory(category.id)}
 					>

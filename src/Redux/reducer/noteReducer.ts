@@ -7,6 +7,7 @@ const loadData = localStorage.getItem('noteList');
 let initialState = {
 	notes: Array<NoteData>(),
 	currentNote: '',
+	noteToPreview: '',
 };
 
 if (loadData) {
@@ -36,7 +37,16 @@ interface ClearCurrencyNote {
 	type: noteTypes.CLEAR_CURRENT_NOTE;
 }
 
-type Action = AddNote | RemoveNote | EditNote | CurrentNote | ClearCurrencyNote;
+interface NoteToPreview {
+	type: noteTypes.NOTE_TO_PREVIEW;
+	payload: string;
+}
+
+interface ClearNoteToPreview {
+	type: noteTypes.CLEAR_NOTE_TO_PREVIEW;
+}
+
+type Action = AddNote | RemoveNote | EditNote | CurrentNote | ClearCurrencyNote | NoteToPreview | ClearNoteToPreview;
 
 export const saveToLS = (keyValue: string, contentValue: NoteData[]) =>
 	localStorage.setItem(keyValue, JSON.stringify(contentValue));
@@ -98,6 +108,18 @@ export const noteReducer = (state = initialState, action: Action) => {
 			return {
 				...state,
 				currentNote: '',
+			};
+		}
+		case noteTypes.NOTE_TO_PREVIEW: {
+			return {
+				...state,
+				noteToPreview: action.payload,
+			};
+		}
+		case noteTypes.CLEAR_NOTE_TO_PREVIEW: {
+			return {
+				...state,
+				noteToPreview: '',
 			};
 		}
 	}

@@ -9,10 +9,11 @@ import { Select } from '../../atoms/Select/Select';
 import { ManageCategoryWindow } from '../../molecules/ManageCategoryWindow/ManageCategoryWindow';
 
 import styles from './Main.module.scss';
+import { BigNoteWindow } from '../../molecules/BigNoteWindow/BigNoteWindow';
 
 
 export const Main = () => {
-	const { notes, currentNote } = useSelector((store: RootState) => store.notes);
+	const { notes, currentNote, noteToPreview } = useSelector((store: RootState) => store.notes);
 	const { categories } = useSelector((state: RootState) => state.categories);
 	const [isAddNoteActiv, setIsAddNoteActiv] = useState(false);
 	const [searchNote, setSearchNote] = useState('');
@@ -65,6 +66,8 @@ export const Main = () => {
 						<ManageCategoryWindow handleWindowClose={handleAddCategoryToggle} />
 					) : null}
 					{currentNote.length > 0 ? <EditNoteWindow /> : null}
+					{noteToPreview.length > 0 ? <BigNoteWindow /> : null}
+					
 				</div>
 			</div>
 		</main>
