@@ -1,7 +1,12 @@
 import { ChangeEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addNote } from '../../../Redux/actions/note';
+import { RootState } from '../../../Redux/store';
+import { CategorieData } from '../../../types/noteTypes';
+import { Select } from '../../atoms/Select/Select';
 import styles from './AddNoteWindow.module.scss';
+
+
 
 interface Props {
 	handleAddNoteClose: () => void;
@@ -9,6 +14,7 @@ interface Props {
 
 export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 	const dispatch = useDispatch();
+	const { categories } = useSelector((state: RootState) => state.categories)
 	const [formValues, setFormValues] = useState({
 		title: '',
 		category: '',
@@ -50,17 +56,8 @@ export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 					value={formValues.title}
 					onChange={handleInputChange}
 				/>
-				<label htmlFor='category'>Category:</label>
-				<select
-					name='category'
-					id='category'
-					onChange={handleInputChange}
-					value={formValues.category}
-				>
-					<option value='null'>Choose a category</option>
-					<option value='work'>Work</option>
-					<option value='home'>Home</option>
-				</select>
+				<Select name='category' value={formValues.category} options={categories} handlerFuntion={handleInputChange} isLabel/>
+
 				<label htmlFor='content'>Content:</label>
 				<textarea
 					name='content'

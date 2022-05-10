@@ -38,7 +38,7 @@ interface ClearCurrencyNote {
 
 type Action = AddNote | RemoveNote | EditNote | CurrentNote | ClearCurrencyNote;
 
-const saveToLS = (keyValue: string, contentValue: NoteData[]) =>
+export const saveToLS = (keyValue: string, contentValue: NoteData[]) =>
 	localStorage.setItem(keyValue, JSON.stringify(contentValue));
 
 export const noteReducer = (state = initialState, action: Action) => {

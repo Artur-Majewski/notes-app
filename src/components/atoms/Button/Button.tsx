@@ -3,7 +3,7 @@ import styles from './Button.module.scss'
 interface Props {
   id?: string;
   name: string;
-  funcionality: (arg?: any) => void
+  funcionality: (arg?: any | null) => void
 }
 
 export const Button = ({id, name, funcionality}: Props) => {
