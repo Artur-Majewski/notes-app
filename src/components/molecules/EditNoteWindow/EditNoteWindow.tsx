@@ -2,10 +2,13 @@ import { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCurrencyNote, editNote } from '../../../Redux/actions/note';
 import { RootState } from '../../../Redux/store';
+import { Select } from '../../atoms/Select/Select';
+import { WindowExitButton } from '../../atoms/WindowExitButton/WindowExitButton';
 import styles from './EditNoteWindow.module.scss';
 
 export const EditNoteWindow = () => {
 	const dispatch = useDispatch();
+	const { categories } = useSelector((state: RootState) => state.categories)
 	const { notes, currentNote } = useSelector((store: RootState) => store.notes);
 	const prevNote = notes.filter((note) => note.id === currentNote);
 	const [formValues, setFormValues] = useState({
@@ -49,28 +52,20 @@ export const EditNoteWindow = () => {
 					value={formValues.title}
 					onChange={handleInputChange}
 				/>
-				<label htmlFor='category'>Category:</label>
-				<select
-					name='category'
-					id='category'
-					onChange={handleInputChange}
-					value={formValues.category}
-				>
-					<option value='null'>Choose a category</option>
-					<option value='work'>Work</option>
-					<option value='home'>Home</option>
-				</select>
+				<Select name='category' value={formValues.category} options={categories} handlerFuntion={handleInputChange} isLabel/>
+				
 				<label htmlFor='content'>Content:</label>
 				<textarea
 					name='content'
 					id='content'
+					className={styles.content}
 					cols={30}
 					rows={10}
 					value={formValues.content}
 					onChange={handleInputChange}
 				></textarea>
 				<button onClick={handleSubmit}>Edit</button>
-				<button onClick={() => dispatch(clearCurrencyNote())}>Close</button>
+				<WindowExitButton funcionality={() => dispatch(clearCurrencyNote())}></WindowExitButton>
 			</section>
 		</>
 	);

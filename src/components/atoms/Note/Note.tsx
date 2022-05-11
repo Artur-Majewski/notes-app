@@ -1,28 +1,30 @@
-import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import {
-	currentNote,
-	noteToPreview,
-	removeNote,
-} from '../../../Redux/actions/note';
+import { useDispatch, useSelector } from 'react-redux';
+import { currentNote, noteToPreview, removeNote } from '../../../Redux/actions/note';
+import { RootState } from '../../../Redux/store';
 import styles from './Note.module.scss';
 
 interface Props {
 	id: string;
 	title: string;
+	category: string
 	content: string;
 	createAt: number;
 }
 
-export const Note = ({ id, title, content, createAt }: Props) => {
+export const Note = ({ id, title, content, category,  createAt }: Props) => {
+	const { categories } = useSelector((state: RootState) => state.categories)
 	const dispatch = useDispatch();
 	const handleRemoveNote = () => dispatch(removeNote(id));
 	const handlerEditNote = () => dispatch(currentNote(id));
 	const handlerPreviewNote = () => dispatch(noteToPreview(id));
 
+	const categoryColor = categories.filter(categoryItem => categoryItem.name === category)
+	const color = categoryColor.length ? categoryColor[0].color : '#333333'
+
+
 	return (
 		<article className={styles.wrapper}>
-			<div className={styles.note}>
+			<div className={styles.note} style={{ background: color}}>
 				<div className={styles.titleBlock}>
 					<h3 className={styles.title}>{title}</h3>
 					<div className={styles.buttonWrapper}>
@@ -37,13 +39,12 @@ export const Note = ({ id, title, content, createAt }: Props) => {
 						</button>
 					</div>
 				</div>
-				<p className={styles.content}>
-					{}
-					{content}
-				</p>
+				<p className={styles.content}>{content}</p>
 			</div>
-			<small className={styles.date}>
-				Create at: {new Date(createAt).toLocaleDateString()}
+			<small className={styles.date} style={{ background: color }}>
+				<div className={styles.dateOverlay}>
+					Create at: {new Date(createAt).toLocaleDateString()}
+				</div>
 			</small>
 		</article>
 	);

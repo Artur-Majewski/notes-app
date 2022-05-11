@@ -11,4 +11,7 @@ export type addNewNote = Omit<NoteData, 'id' | 'createAt'>
 export interface CategorieData {
   id: string;
   name: string;
+	color: string;
 }
+
+export type addNewCategory = Omit<CategorieData, 'id'>

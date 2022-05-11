@@ -2,11 +2,9 @@ import { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNote } from '../../../Redux/actions/note';
 import { RootState } from '../../../Redux/store';
-import { CategorieData } from '../../../types/noteTypes';
 import { Select } from '../../atoms/Select/Select';
+import { WindowExitButton } from '../../atoms/WindowExitButton/WindowExitButton';
 import styles from './AddNoteWindow.module.scss';
-
-
 
 interface Props {
 	handleAddNoteClose: () => void;
@@ -68,7 +66,7 @@ export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 					onChange={handleInputChange}
 				></textarea>
 				<button onClick={handleSubmit}>Add</button>
-				<button onClick={handleAddNoteClose}>Close</button>
+				<WindowExitButton funcionality={handleAddNoteClose}></WindowExitButton>
 			</section>
 		</>
 	);

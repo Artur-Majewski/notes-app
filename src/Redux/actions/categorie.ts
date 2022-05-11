@@ -1,9 +1,11 @@
 import { categoriesTypes } from "../actionTypes/categorie";
+import { addNewCategory } from "../../types/noteTypes";
 
-export const addCategory = (categorieName: string) => ({
+export const addCategory = (newCateogry: addNewCategory) => ({
 	type: categoriesTypes.ADD_CATEGORY,
-	payload: categorieName,
+	payload: newCateogry,
 });
+
 
 export const removeCategory = (categorieName: string) => ({
 	type: categoriesTypes.REMOVE_CATEGORY,

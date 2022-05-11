@@ -1,14 +1,16 @@
 import { v4 as uuid } from "uuid";
-import { CategorieData } from "../../types/noteTypes";
+import { addNewCategory, CategorieData } from "../../types/noteTypes";
 import { categoriesTypes } from "../actionTypes/categorie"
 
 const loadData = localStorage.getItem('categoriesList');
 const basicCategories: CategorieData[] = [{
   id: "e2ec9fd9-6aef-4240-a7cd-d83f9ad11287",
-  name: 'work'
+  name: 'work',
+  color: '#FF0000'
 },{
   id: "e2ec9fd9-6aef-4240-a7cd-d83f9ad11282",
-  name: 'hobby'
+  name: 'hobby',
+  color: '#00FF00'
 }]
 
 let initialState = {
@@ -24,7 +26,7 @@ if (loadData) {
 
 interface AddCategory {
   type: categoriesTypes.ADD_CATEGORY;
-  payload: string;
+  payload: addNewCategory;
 }
 
 interface RemoveCategory {
@@ -41,7 +43,8 @@ export const categorieReducer = (state = initialState, action: Action ) => {
     case categoriesTypes.ADD_CATEGORY: {
       const newCategorie: CategorieData = {
         id: uuid(),
-        name: action.payload
+        name: action.payload.name,
+        color: action.payload.color,
       }
       const newCategoriesList = [...state.categories, newCategorie]
       localStorage.setItem('categoriesList', JSON.stringify(newCategoriesList))
