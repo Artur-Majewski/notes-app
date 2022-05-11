@@ -22,8 +22,7 @@ export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 		content: '',
 	});
 
-	const handleInputChange = (
-		event: ChangeEvent<	HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement > 
+	const handleInputChange = ( event: ChangeEvent<	HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement > 
     ) => {
 		setFormValues({
 			...formValues,

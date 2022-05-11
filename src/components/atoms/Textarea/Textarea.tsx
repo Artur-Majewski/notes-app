@@ -15,8 +15,6 @@ export const Textarea = ({ name, value, handlerFunction }: Props) => {
 				name={name}
 				id={name}
         className={styles.content}
-				// cols={30}
-				// rows={10}
 				value={value}
 				onChange={handlerFunction}
 			></textarea>

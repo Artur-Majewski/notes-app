@@ -5,7 +5,7 @@ interface Props {
 	name: string;
 	type: string;
 	value: string | number;
-	handlerFunction: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+	handlerFunction: (event: any) => void;
 }
 
 export const Input = ({name, type = 'text', value, handlerFunction}: Props) => {
