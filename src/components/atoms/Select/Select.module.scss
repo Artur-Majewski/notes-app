@@ -1,0 +1,23 @@
+.label {
+  text-transform: capitalize;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+}
+
+.select {
+  margin-bottom: 5px;
+  padding-left: 5px;
+  height: 30px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding-left: 10px;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  background-color: rgba(#000000, 0.2);
+
+  & option {
+    background-color: #444;
+    font-size: 1.2rem;
+  }
+}

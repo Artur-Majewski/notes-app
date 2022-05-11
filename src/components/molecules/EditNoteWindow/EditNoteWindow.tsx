@@ -48,7 +48,7 @@ export const EditNoteWindow = () => {
 				className={styles.blockBackground}
 				onClick={() => dispatch(clearCurrencyNote())}
 			></div>
-			<section className={styles.addNoteWrapper}>
+			<section className={styles.editNoteWrapper}>
 				<Input name='title' type='text' value={formValues.title} handlerFunction={handleInputChange}/>
 				<Select name='category' value={formValues.category} options={categories} handlerFuntion={handleInputChange} isLabel/>
 				<Textarea name='content' value={formValues.content} handlerFunction={handleInputChange}/>

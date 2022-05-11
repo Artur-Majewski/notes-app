@@ -12,8 +12,8 @@ interface Props {
 }
 
 export const Note = ({ id, title, content, category,  createAt }: Props) => {
-	const { categories } = useSelector((state: RootState) => state.categories)
 	const dispatch = useDispatch();
+	const { categories } = useSelector((state: RootState) => state.categories)
 	const handleRemoveNote = () => dispatch(removeNote(id));
 	const handlerEditNote = () => dispatch(currentNote(id));
 	const handlerPreviewNote = () => dispatch(noteToPreview(id));

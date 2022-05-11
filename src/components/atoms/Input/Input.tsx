@@ -11,8 +11,8 @@ interface Props {
 export const Input = ({name, type = 'text', value, handlerFunction}: Props) => {
 	return (
 		<>
-			<label htmlFor={name}>{name}</label>
-			<input type={type} name={name} id={name} value={value} onChange={handlerFunction}/>
+			<label htmlFor={name}  className={styles.label}>{name}:</label>
+			<input type={type} name={name} id={name} className={styles.input} value={value} onChange={handlerFunction}/>
 		</>
 	);
 };

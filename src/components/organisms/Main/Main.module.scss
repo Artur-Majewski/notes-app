@@ -1,3 +1,29 @@
 .wrapper {
   padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
+.navBtnWrapper{
+display: flex;
+justify-content: space-evenly;
+min-width: 320px;
+width: 100%;
+max-width: 600px;
+margin: 10px auto;
+}
+
+.navBtn {
+  width: 150px;
+  height: 35px;
+  border-radius: 10px;
+  border: 2px solid rgba(#000, 0.4);
+  font-size: 1.1;
+}
+
+.selectWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin-top: 10px;
+}
+

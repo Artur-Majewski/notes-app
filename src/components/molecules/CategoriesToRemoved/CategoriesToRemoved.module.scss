@@ -1,12 +1,33 @@
+.wrapper {
+  margin-top: 5px;
+  height: calc(100vh - 230px);
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
 .removeBlockWrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 520px) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .btn {
+  min-width: 250px;
   width: 40%;
-  margin: 5px 0;
+  margin: 5px auto;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 15px;
+  border: none;
+  background: rgba(#000, 0.3);
+  color: white;
+  font-weight: 500;
+  font-size: 1.2rem;
 }
 
 .boxColor {

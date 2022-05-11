@@ -17,13 +17,15 @@ export const BigNoteWindow = () => {
 				className={styles.blockBackground}
 				onClick={() => dispatch(clearNoteToPreview())}
 			></div>
-			<section className={styles.addNoteWrapper}>
-				<h4 className={styles.title}>{selectedNote[0].title}</h4>
-				<small className={styles.category}>({selectedNote[0].category})</small>
-				<small className={styles.date}>{new Date(selectedNote[0].createAt).toLocaleDateString()}</small>
+			<article className={styles.addNoteWrapper}>
+				<div className={styles.header}>
+					<h4 className={styles.title}>{selectedNote[0].title}</h4>
+					<small className={styles.category}>({selectedNote[0].category})</small>
+					<small className={styles.date}>{new Date(selectedNote[0].createAt).toLocaleDateString()}</small>
+				</div>
 				<p className={styles.content}>{selectedNote[0].content}</p>
 			<WindowExitButton funcionality={() => dispatch(clearNoteToPreview())}></WindowExitButton>
-			</section>
+			</article>
 		</>
 	);
 };

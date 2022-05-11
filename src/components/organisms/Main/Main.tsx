@@ -40,14 +40,19 @@ export const Main = () => {
 	return (
 		<main className={styles.wrapper}>
 			<Search searchNote={setSearchNote} />
-			<h2>Note List:</h2>
-
+			<div className={styles.navBtnWrapper}> 
+				<button className={styles.navBtn} onClick={handleAddNoteToggle}>Add new note</button>
+				<button className={styles.navBtn} onClick={handleAddCategoryToggle}> Add/Remove category</button>
+			</div>
+			<div className={styles.selectWrapper}>
 			<Select
+				isLabel
+				name='Category filter'
 				value={currentCategory}
 				options={categories}
 				handlerFuntion={handleCategoryCheck}
 			/>
-			<button onClick={handleAddCategoryToggle}> Add/Remove Category</button>
+			</div>
 
 			<div className={styles.mainInternalWrapper}>
 				<div>
@@ -56,7 +61,7 @@ export const Main = () => {
 					) : (
 						<h3> You don't have any notes yet </h3>
 					)}
-					<button onClick={handleAddNoteToggle}>Add</button>
+					
 				</div>
 				<div>
 					{isAddNoteActiv ? (

@@ -1,8 +1,10 @@
 .btn {
   position: absolute;
   min-width: 25%;
+  padding: 0 5px;
   height: 25px;
   border-radius: 15px;
+  border: 2px solid rgba(#000, 0.4);
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);

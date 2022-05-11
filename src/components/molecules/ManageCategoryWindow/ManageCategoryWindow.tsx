@@ -20,8 +20,7 @@ export const ManageCategoryWindow = ({ handleWindowClose }: Props) => {
 		color: '',
 	});
 
-	const handleInputChange = ( event: ChangeEvent<HTMLInputElement> 
-    ) => {
+	const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setFormValues({
 			...formValues,
 			[event.target.name]: event.target.value,
@@ -29,25 +28,44 @@ export const ManageCategoryWindow = ({ handleWindowClose }: Props) => {
 	};
 
 	const handleSubmit = () => {
-		console.log('wysyła')
+		console.log('wysyła');
 		dispatch(
 			addCategory({
 				name: formValues.name,
 				color: formValues.color,
 			})
 		);
-		// handleWindowClose();
 	};
 
 	return (
 		<>
 			<div className={styles.blockBackground} onClick={handleWindowClose}></div>
 			<section className={styles.AddCategoryWrapper}>
-			<div className={styles.newCategoryWrapper}>
-				<Input name='name' type='name' value={formValues.name} handlerFunction={handleInputChange}/> 
-				<Input name='color' type='color' value={formValues.color} handlerFunction={handleInputChange}/> 
-				<FormButton name='Add new category' functionality={handleSubmit}/>
-			</div>
+				<div className={styles.newCategoryWrapper}>
+					<h3 className={styles.title}>Add new categroy</h3>
+					<div className={styles.newCategoryWrapper}>
+						<Input
+							name='name'
+							type='text'
+							value={formValues.name}
+							handlerFunction={handleInputChange}
+						/>
+						<label htmlFor='color'>Color</label>
+						<div className={styles.colorInputWrapper}>
+							<input
+								type='color'
+								name='color'
+								id='color'
+								className={styles.colorInput}
+								value={formValues.color}
+								onChange={handleInputChange}
+							/>
+						</div>
+						<button className={styles.btnAdd} onClick={handleSubmit}>
+							Add new category
+						</button>
+					</div>
+				</div>
 				<CategoriesToRemoved />
 				<WindowExitButton funcionality={handleWindowClose}></WindowExitButton>
 			</section>

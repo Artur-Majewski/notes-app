@@ -1,13 +1,16 @@
 body {
-  background-image: linear-gradient(to right, #DECBA4, #3E5151);
+  /* background-image: linear-gradient(to right, #DECBA4, #3E5151); */
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 }
 
 .App {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 1200px;
+  /* width: 1200px; */
   min-height: 100vh;
   margin: 0 auto;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
   background: rgba(0, 0, 0, 0.3);
 }

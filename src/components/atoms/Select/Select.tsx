@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-
+import styles from './Select.module.scss'
 interface Props {
 	name?: string;
 	value: string;
@@ -11,10 +11,11 @@ interface Props {
 export const Select = ({name, value = '', options, isLabel, handlerFuntion}: Props) => {
 	return (
 		<>
-		{isLabel ? <label htmlFor={name}>{name}:</label> : null}
+		{isLabel ? <label htmlFor={name} className={styles.label}>{name}:</label> : null}
 		<select
 			name= {name}
 			id = {name}
+			className={styles.select}
 			onChange={ handlerFuntion }
 			value={value}
 		>

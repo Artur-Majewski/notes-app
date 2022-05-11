@@ -9,8 +9,10 @@ export const CategoriesToRemoved = () => {
 	const handelRemoveCategory = (name: string) => dispatch(removeCategory(name));
 
 	return (
-		<div>
-			Select a category to delete:
+		<>
+		<h3>Select a category to delete:</h3>
+		<div className={styles.wrapper}>
+			
 			<div className={styles.removeBlockWrapper}>
 				{categories.map((category) => (
 
@@ -25,5 +27,6 @@ export const CategoriesToRemoved = () => {
 				))}
 			</div>
 		</div>
+		</>
 	);
 };

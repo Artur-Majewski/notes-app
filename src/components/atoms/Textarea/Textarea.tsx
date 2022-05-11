@@ -10,7 +10,7 @@ interface Props {
 export const Textarea = ({ name, value, handlerFunction }: Props) => {
 	return (
 		<>
-			<label htmlFor={name}>{name}</label>
+			<label htmlFor={name} className={styles.label}>{name}</label>
 			<textarea
 				name={name}
 				id={name}
