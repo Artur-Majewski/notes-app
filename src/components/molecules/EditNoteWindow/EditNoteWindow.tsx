@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCurrencyNote, editNote } from '../../../Redux/actions/note';
 import { RootState } from '../../../Redux/store';
+import { FormButton } from '../../atoms/FormButton/FormButton';
 import { Select } from '../../atoms/Select/Select';
 import { WindowExitButton } from '../../atoms/WindowExitButton/WindowExitButton';
 import styles from './EditNoteWindow.module.scss';
@@ -64,7 +65,8 @@ export const EditNoteWindow = () => {
 					value={formValues.content}
 					onChange={handleInputChange}
 				></textarea>
-				<button onClick={handleSubmit}>Edit</button>
+				<FormButton name='Edit' functionality={handleSubmit}/>
+				{/* <button onClick={handleSubmit}>Edit</button> */}
 				<WindowExitButton funcionality={() => dispatch(clearCurrencyNote())}></WindowExitButton>
 			</section>
 		</>

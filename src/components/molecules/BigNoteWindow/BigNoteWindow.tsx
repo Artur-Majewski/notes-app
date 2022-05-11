@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { clearNoteToPreview } from '../../../Redux/actions/note';
 import { RootState } from '../../../Redux/store';
+import { WindowExitButton } from '../../atoms/WindowExitButton/WindowExitButton';
 import styles from './BigNoteWindow.module.scss';
 
 export const BigNoteWindow = () => {
@@ -21,7 +22,7 @@ export const BigNoteWindow = () => {
 				<small className={styles.category}>({selectedNote[0].category})</small>
 				<small className={styles.date}>{new Date(selectedNote[0].createAt).toLocaleDateString()}</small>
 				<p className={styles.content}>{selectedNote[0].content}</p>
-			<button className={styles.btnExit} onClick={() => dispatch(clearNoteToPreview())}><i className='fa-solid fa-xmark'></i></button>
+			<WindowExitButton funcionality={() => dispatch(clearNoteToPreview())}></WindowExitButton>
 			</section>
 		</>
 	);

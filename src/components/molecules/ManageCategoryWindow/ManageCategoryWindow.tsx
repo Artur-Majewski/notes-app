@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCategory, removeCategory } from '../../../Redux/actions/categorie';
 import { RootState } from '../../../Redux/store';
 import { addNewCategory } from '../../../types/noteTypes';
+import { WindowExitButton } from '../../atoms/WindowExitButton/WindowExitButton';
 import { CategoriesToRemoved } from '../CategoriesToRemoved/CategoriesToRemoved';
 import styles from './ManageCategoryWindow.module.scss';
 
@@ -39,7 +40,7 @@ export const ManageCategoryWindow = ({ handleWindowClose }: Props) => {
 				<input type='color' name='color' id='color' ref={inputColorRef}/>
 				<button onClick={handleSubmit}>Add new category</button>
 				<CategoriesToRemoved />
-				<button onClick={handleWindowClose}>Close</button>
+				<WindowExitButton funcionality={handleWindowClose}></WindowExitButton>
 			</section>
 		</>
 	);

@@ -2,7 +2,10 @@ import { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNote } from '../../../Redux/actions/note';
 import { RootState } from '../../../Redux/store';
+import { FormButton } from '../../atoms/FormButton/FormButton';
+import { Input } from '../../atoms/Input/Input';
 import { Select } from '../../atoms/Select/Select';
+import { Textarea } from '../../atoms/Textarea/Textarea';
 import { WindowExitButton } from '../../atoms/WindowExitButton/WindowExitButton';
 import styles from './AddNoteWindow.module.scss';
 
@@ -29,6 +32,7 @@ export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 	};
 
 	const handleSubmit = () => {
+		console.log('wysyła')
 		dispatch(
 			addNote({
 				title: formValues.title,
@@ -46,27 +50,12 @@ export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 				onClick={handleAddNoteClose}
 			></div>
 			<section className={styles.addNoteWrapper}>
-				<label htmlFor='title'>Title:</label>
-				<input
-					type='text'
-					name='title'
-					id='title'
-					value={formValues.title}
-					onChange={handleInputChange}
-				/>
+				<Input name='title' type='text' value={formValues.title} handlerFunction={handleInputChange}/> 
 				<Select name='category' value={formValues.category} options={categories} handlerFuntion={handleInputChange} isLabel/>
-
-				<label htmlFor='content'>Content:</label>
-				<textarea
-					name='content'
-					id='content'
-					cols={30}
-					rows={10}
-					value={formValues.content}
-					onChange={handleInputChange}
-				></textarea>
-				<button onClick={handleSubmit}>Add</button>
+				<Textarea name='content' value={formValues.content} handlerFunction={handleInputChange}/>
+				<FormButton name='Add' functionality={handleSubmit}/>
 				<WindowExitButton funcionality={handleAddNoteClose}></WindowExitButton>
+				
 			</section>
 		</>
 	);
