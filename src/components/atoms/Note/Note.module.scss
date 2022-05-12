@@ -10,7 +10,6 @@
   border-top-left-radius: 10px; 
   border-top-right-radius: 10px;
   background: rgba(rgb(50, 50, 50), 1.0);
-  // margin: 10px 10px 0 10px;
   color: white;
   overflow-y: hidden;
 
@@ -34,6 +33,7 @@
 .content {
   padding: 5px;
   height: 100%;
+  line-height: 1.32;
 }
 
 .date {

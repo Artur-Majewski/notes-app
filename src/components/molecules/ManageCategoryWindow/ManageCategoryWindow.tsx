@@ -1,9 +1,7 @@
-import { ChangeEvent, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addCategory, removeCategory } from '../../../Redux/actions/categorie';
-import { RootState } from '../../../Redux/store';
-import { addNewCategory } from '../../../types/noteTypes';
-import { FormButton } from '../../atoms/FormButton/FormButton';
+import { ChangeEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addCategory } from '../../../Redux/actions/categorie';
+import { activeError, sendErrorMessage } from '../../../Redux/actions/error';
 import { Input } from '../../atoms/Input/Input';
 import { WindowExitButton } from '../../atoms/WindowExitButton/WindowExitButton';
 import { CategoriesToRemoved } from '../CategoriesToRemoved/CategoriesToRemoved';
@@ -17,7 +15,7 @@ export const ManageCategoryWindow = ({ handleWindowClose }: Props) => {
 	const dispatch = useDispatch();
 	const [formValues, setFormValues] = useState({
 		name: '',
-		color: '',
+		color: '#000000',
 	});
 
 	const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +26,12 @@ export const ManageCategoryWindow = ({ handleWindowClose }: Props) => {
 	};
 
 	const handleSubmit = () => {
-		console.log('wysyła');
+		if (!formValues.name) {
+			dispatch(activeError(true))
+			dispatch(sendErrorMessage('The name of the category has not been completed. Please complete these fields. '))
+			return
+		}
+
 		dispatch(
 			addCategory({
 				name: formValues.name,

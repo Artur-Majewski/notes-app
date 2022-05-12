@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { activeError, sendErrorMessage } from '../../../Redux/actions/error';
 import { clearCurrencyNote, editNote } from '../../../Redux/actions/note';
 import { RootState } from '../../../Redux/store';
 import { FormButton } from '../../atoms/FormButton/FormButton';
@@ -30,6 +31,17 @@ export const EditNoteWindow = () => {
 	};
 
 	const handleSubmit = () => {
+		if (!formValues.title) {
+			dispatch(activeError(true))
+			dispatch(sendErrorMessage('The title of the note has not been completed. Please complete these fields. '))
+			return
+		}
+		if (!formValues.content) {
+			dispatch(activeError(true))
+			dispatch(sendErrorMessage('The content of the note has not been completed. Please complete these fields. '))
+			return
+		}
+		
 		dispatch(
 			editNote({
 				id: prevNote[0].id,

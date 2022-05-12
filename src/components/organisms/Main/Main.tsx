@@ -1,5 +1,5 @@
-import { ChangeEvent, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../Redux/store';
 import { NotesList } from '../../molecules/NotesList/NotesList';
 import { Search } from '../../molecules/Search/Search';
@@ -7,12 +7,17 @@ import { AddNoteWindow } from '../../molecules/AddNoteWindow/AddNoteWindow';
 import { EditNoteWindow } from '../../molecules/EditNoteWindow/EditNoteWindow';
 import { Select } from '../../atoms/Select/Select';
 import { ManageCategoryWindow } from '../../molecules/ManageCategoryWindow/ManageCategoryWindow';
-
-import styles from './Main.module.scss';
 import { BigNoteWindow } from '../../molecules/BigNoteWindow/BigNoteWindow';
+import { ErrorMessage } from '../../molecules/ErrorMessage/ErrorMessage';
+import { activeError } from '../../../Redux/actions/error';
+import styles from './Main.module.scss';
+
+let counter: number;
 
 
 export const Main = () => {
+	const dispatch = useDispatch()
+	const { isActive } = useSelector((state: RootState) => state.error)
 	const { notes, currentNote, noteToPreview } = useSelector((store: RootState) => store.notes);
 	const { categories } = useSelector((state: RootState) => state.categories);
 	const [isAddNoteActiv, setIsAddNoteActiv] = useState(false);
@@ -36,6 +41,15 @@ export const Main = () => {
 			)
 			.sort((a, b) => a.createAt - b.createAt);
 	};
+
+	
+	counter = isActive === true ? counter++ : counter;
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			dispatch(activeError(false))
+		}, 7000);
+		return () => clearTimeout(timeout)
+	}, [counter])
 
 	return (
 		<main className={styles.wrapper}>
@@ -72,7 +86,7 @@ export const Main = () => {
 					) : null}
 					{currentNote.length > 0 ? <EditNoteWindow /> : null}
 					{noteToPreview.length > 0 ? <BigNoteWindow /> : null}
-					
+					{isActive ? <ErrorMessage/> : null}
 				</div>
 			</div>
 		</main>

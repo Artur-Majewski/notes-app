@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { activeError, sendErrorMessage } from '../../../Redux/actions/error';
 import { addNote } from '../../../Redux/actions/note';
 import { RootState } from '../../../Redux/store';
 import { FormButton } from '../../atoms/FormButton/FormButton';
@@ -31,7 +32,17 @@ export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 	};
 
 	const handleSubmit = () => {
-		console.log('wysyła')
+		if (!formValues.title) {
+			dispatch(activeError(true))
+			dispatch(sendErrorMessage('The title of the note has not been completed. Please complete these fields. '))
+			return
+		}
+		if (!formValues.content) {
+			dispatch(activeError(true))
+			dispatch(sendErrorMessage('The content of the note has not been completed. Please complete these fields. '))
+			return
+		}
+
 		dispatch(
 			addNote({
 				title: formValues.title,
@@ -39,6 +50,9 @@ export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 				content: formValues.content,
 			})
 		);
+		console.log('działa');
+		
+		
 		handleAddNoteClose();
 	};
 
@@ -54,7 +68,6 @@ export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 				<Textarea name='content' value={formValues.content} handlerFunction={handleInputChange}/>
 				<FormButton name='Add' functionality={handleSubmit}/>
 				<WindowExitButton funcionality={handleAddNoteClose}></WindowExitButton>
-				
 			</section>
 		</>
 	);

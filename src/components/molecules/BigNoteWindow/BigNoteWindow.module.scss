@@ -12,14 +12,29 @@
   flex-direction: column;
   position: fixed;
   top: 25px;
-  left: 5%;
-  width: 90%;
-  height: 90vh;
+  right: 25px;
+  bottom: 25px;
+  left: 25px;
   padding: 10px;
   border: 2px solid black;
   border-radius: 10px;
   color: white;
   background-color: #333;
+
+  @media (min-width: 800px) and (orientation: portrait) {
+    top: 10vw;
+    right: 10vw;
+    bottom: 10vw;
+    left: 10vw;
+  }
+
+  @media (min-width: 1200px) and (orientation: landscape) {
+    width: 1000px;
+    height: 600px;
+    top: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .header {
