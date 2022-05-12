@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { activeError, sendErrorMessage } from '../../../Redux/actions/error';
 import { clearCurrencyNote, editNote } from '../../../Redux/actions/note';
 import { RootState } from '../../../Redux/store';
+import { CardTitle } from '../../atoms/CardTitle/CardTitle';
 import { FormButton } from '../../atoms/FormButton/FormButton';
 import { Input } from '../../atoms/Input/Input';
 import { Select } from '../../atoms/Select/Select';
@@ -61,6 +62,7 @@ export const EditNoteWindow = () => {
 				onClick={() => dispatch(clearCurrencyNote())}
 			></div>
 			<section className={styles.editNoteWrapper}>
+				<CardTitle title='Edit note'/>
 				<Input name='title' type='text' value={formValues.title} handlerFunction={handleInputChange}/>
 				<Select name='category' value={formValues.category} options={categories} handlerFuntion={handleInputChange} isLabel/>
 				<Textarea name='content' value={formValues.content} handlerFunction={handleInputChange}/>

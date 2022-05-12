@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { clearNoteToPreview } from '../../../Redux/actions/note';
 import { RootState } from '../../../Redux/store';
+import { BackgroundBlock } from '../../atoms/BackgroundBlock/BackgroundBlock';
 import { WindowExitButton } from '../../atoms/WindowExitButton/WindowExitButton';
-import styles from './BigNoteWindow.module.scss';
+import styles from './PreviewNoteWindow.module.scss';
 
-export const BigNoteWindow = () => {
+export const PreviewNoteWindow = () => {
 	const dispatch = useDispatch();
 	const { notes, noteToPreview } = useSelector(
 		(store: RootState) => store.notes
@@ -13,10 +14,7 @@ export const BigNoteWindow = () => {
 
 	return (
 		<>
-			<div
-				className={styles.blockBackground}
-				onClick={() => dispatch(clearNoteToPreview())}
-			></div>
+			<BackgroundBlock functionality={() => dispatch(clearNoteToPreview())} />
 			<article className={styles.addNoteWrapper}>
 				<div className={styles.header}>
 					<h4 className={styles.title}>{selectedNote[0].title}</h4>

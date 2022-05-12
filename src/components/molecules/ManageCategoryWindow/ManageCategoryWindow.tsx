@@ -2,9 +2,11 @@ import { ChangeEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addCategory } from '../../../Redux/actions/categorie';
 import { activeError, sendErrorMessage } from '../../../Redux/actions/error';
+import { BackgroundBlock } from '../../atoms/BackgroundBlock/BackgroundBlock';
+import { CardTitle } from '../../atoms/CardTitle/CardTitle';
 import { Input } from '../../atoms/Input/Input';
 import { WindowExitButton } from '../../atoms/WindowExitButton/WindowExitButton';
-import { CategoriesToRemoved } from '../CategoriesToRemoved/CategoriesToRemoved';
+import { CategoriesList } from '../CategoriesList/CategoriesList';
 import styles from './ManageCategoryWindow.module.scss';
 
 interface Props {
@@ -27,9 +29,9 @@ export const ManageCategoryWindow = ({ handleWindowClose }: Props) => {
 
 	const handleSubmit = () => {
 		if (!formValues.name) {
-			dispatch(activeError(true))
+			dispatch(activeError(true));
 			dispatch(sendErrorMessage('The name of the category has not been completed. Please complete these fields. '))
-			return
+			return;
 		}
 
 		dispatch(
@@ -42,10 +44,10 @@ export const ManageCategoryWindow = ({ handleWindowClose }: Props) => {
 
 	return (
 		<>
-			<div className={styles.blockBackground} onClick={handleWindowClose}></div>
+			<BackgroundBlock functionality={handleWindowClose} />
 			<section className={styles.AddCategoryWrapper}>
 				<div className={styles.newCategoryWrapper}>
-					<h3 className={styles.title}>Add new categroy</h3>
+					<CardTitle title='Add new categroy'/>
 					<div className={styles.newCategoryWrapper}>
 						<Input
 							name='name'
@@ -69,7 +71,7 @@ export const ManageCategoryWindow = ({ handleWindowClose }: Props) => {
 						</button>
 					</div>
 				</div>
-				<CategoriesToRemoved />
+				<CategoriesList />
 				<WindowExitButton funcionality={handleWindowClose}></WindowExitButton>
 			</section>
 		</>

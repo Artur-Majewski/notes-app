@@ -9,7 +9,7 @@
 
 .editNoteWrapper {
   display: grid;
-  grid-template-rows: repeat(2, (25px 35px)) 25px 1fr;
+  grid-template-rows: 25px repeat(2, (25px 35px)) 25px 1fr;
   position: fixed;
   top: 25px;
   right: 25px;

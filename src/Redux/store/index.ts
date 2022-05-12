@@ -9,7 +9,6 @@ const rootReducer = combineReducers({
   notes: noteReducer,
   categories: categorieReducer,
   error: errorReducer,
-  
 })
 
 export const store = createStore(rootReducer)

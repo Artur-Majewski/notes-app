@@ -26,7 +26,7 @@ export const Note = ({ id, title, content, category,  createAt }: Props) => {
 		<article className={styles.wrapper}>
 			<div className={styles.note} style={{ background: color}}>
 				<div className={styles.titleBlock}>
-					<h3 className={styles.title}>{title}</h3>
+					<h2 className={styles.title}>{title}</h2>
 					<div className={styles.buttonWrapper}>
 						<button onClick={handlerPreviewNote} className={styles.btn}>
 							<i className='fa-solid fa-up-right-and-down-left-from-center'></i>

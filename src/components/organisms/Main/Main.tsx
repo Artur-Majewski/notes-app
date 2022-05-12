@@ -7,7 +7,7 @@ import { AddNoteWindow } from '../../molecules/AddNoteWindow/AddNoteWindow';
 import { EditNoteWindow } from '../../molecules/EditNoteWindow/EditNoteWindow';
 import { Select } from '../../atoms/Select/Select';
 import { ManageCategoryWindow } from '../../molecules/ManageCategoryWindow/ManageCategoryWindow';
-import { BigNoteWindow } from '../../molecules/BigNoteWindow/BigNoteWindow';
+import { PreviewNoteWindow } from '../../molecules/PreviewNoteWindow/PreviewNoteWindow';
 import { ErrorMessage } from '../../molecules/ErrorMessage/ErrorMessage';
 import { activeError } from '../../../Redux/actions/error';
 import styles from './Main.module.scss';
@@ -85,7 +85,7 @@ export const Main = () => {
 						<ManageCategoryWindow handleWindowClose={handleAddCategoryToggle} />
 					) : null}
 					{currentNote.length > 0 ? <EditNoteWindow /> : null}
-					{noteToPreview.length > 0 ? <BigNoteWindow /> : null}
+					{noteToPreview.length > 0 ? <PreviewNoteWindow /> : null}
 					{isActive ? <ErrorMessage/> : null}
 				</div>
 			</div>

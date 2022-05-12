@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { activeError, sendErrorMessage } from '../../../Redux/actions/error';
 import { addNote } from '../../../Redux/actions/note';
 import { RootState } from '../../../Redux/store';
+import { CardTitle } from '../../atoms/CardTitle/CardTitle';
 import { FormButton } from '../../atoms/FormButton/FormButton';
 import { Input } from '../../atoms/Input/Input';
 import { Select } from '../../atoms/Select/Select';
@@ -50,9 +51,6 @@ export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 				content: formValues.content,
 			})
 		);
-		console.log('działa');
-		
-		
 		handleAddNoteClose();
 	};
 
@@ -63,6 +61,7 @@ export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 				onClick={handleAddNoteClose}
 			></div>
 			<section className={styles.addNoteWrapper}>
+				<CardTitle title='Add new note'/>
 				<Input name='title' type='text' value={formValues.title} handlerFunction={handleInputChange}/> 
 				<Select name='category' value={formValues.category} options={categories} handlerFuntion={handleInputChange} isLabel/>
 				<Textarea name='content' value={formValues.content} handlerFunction={handleInputChange}/>
