@@ -49,6 +49,7 @@ export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 				title: formValues.title,
 				category: formValues.category,
 				content: formValues.content,
+				
 			})
 		);
 		handleAddNoteClose();

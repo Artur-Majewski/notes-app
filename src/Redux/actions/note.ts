@@ -1,4 +1,4 @@
-import { addNewNote, NoteData } from '../../types/noteTypes';
+import { addNewNote, editNoteType } from '../../types/noteTypes';
 import { noteTypes } from '../actionTypes/note';
 
 export const addNote = (noteData: addNewNote) => ({
@@ -11,7 +11,7 @@ export const removeNote = (id: string) => ({
 	payload: id,
 });
 
-export const editNote = (newNoteData: NoteData) => ({
+export const editNote = (newNoteData: editNoteType) => ({
 	type: noteTypes.EDIT_NOTE,
 	payload: newNoteData,
 });

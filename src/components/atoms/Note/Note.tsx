@@ -9,9 +9,10 @@ interface Props {
 	category: string
 	content: string;
 	createAt: number;
+	lastEdition: number;
 }
 
-export const Note = ({ id, title, content, category,  createAt }: Props) => {
+export const Note = ({ id, title, content, category,  createAt, lastEdition }: Props) => {
 	const dispatch = useDispatch();
 	const { categories } = useSelector((state: RootState) => state.categories)
 	const handleRemoveNote = () => dispatch(removeNote(id));
@@ -43,7 +44,8 @@ export const Note = ({ id, title, content, category,  createAt }: Props) => {
 			</div>
 			<small className={styles.date}>
 				<div className={styles.dateOverlay}>
-					Create at: {new Date(createAt).toLocaleDateString()}
+					<p>Create at: {new Date(createAt).toLocaleDateString()}</p>
+					{lastEdition !== 0 ? <p>Edited: {new Date(lastEdition).toLocaleDateString()}</p> : null}
 				</div>
 			</small>
 		</article>

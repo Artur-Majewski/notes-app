@@ -60,6 +60,7 @@ export const noteReducer = (state = initialState, action: Action) => {
 				category: action.payload.category,
 				content: action.payload.content,
 				createAt: new Date().getTime(),
+				lastEdition: 0,
 			};
 			const newNoteList = [...state.notes, newNote];
 			saveToLS('noteList', newNoteList);
@@ -90,6 +91,7 @@ export const noteReducer = (state = initialState, action: Action) => {
 				category: action.payload.category,
 				content: action.payload.content,
 				createAt: action.payload.createAt,
+				lastEdition: new Date().getTime(),
 			};
 			otherNotes.push(modifiedNote);
 			saveToLS('noteList', otherNotes);

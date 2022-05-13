@@ -4,9 +4,11 @@ export interface NoteData {
 	content: string;
 	category: string;
 	createAt: number;
+	lastEdition: number; 
 }
 
-export type addNewNote = Omit<NoteData, 'id' | 'createAt'>
+export type addNewNote = Omit<NoteData, 'id' | 'createAt' | 'lastEdition'>
+export type editNoteType = Omit<NoteData, 'lastEdition'>
 
 export interface CategorieData {
   id: string;

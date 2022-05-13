@@ -11,7 +11,7 @@ export const NotesList = ({ noteData }: Props) => {
 
 	return (
 		<section className={styles.noteList}>
-			{noteData.map(({ id, title, category, content, createAt }) => (
+			{noteData.map(({ id, title, category, content, createAt, lastEdition }) => (
 				<Note
 					key={id}
           id={id}
@@ -19,6 +19,7 @@ export const NotesList = ({ noteData }: Props) => {
 					category={category}
 					content={content}
 					createAt={createAt}
+					lastEdition={lastEdition}
 				/>
 			))}
 		</section>
