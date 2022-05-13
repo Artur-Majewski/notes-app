@@ -52,6 +52,7 @@ export const ManageCategoryWindow = ({ handleWindowClose }: Props) => {
 						<Input
 							name='name'
 							type='text'
+							maxLength={30}
 							value={formValues.name}
 							handlerFunction={handleInputChange}
 						/>

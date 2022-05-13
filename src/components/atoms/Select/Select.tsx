@@ -21,7 +21,7 @@ export const Select = ({name, value = '', options, isLabel, handlerFuntion}: Pro
 		>
 			<option value=''>Choose a category</option>
 			{options.map((option) => (
-				<option key={option.id} value={option.name}>{option.name}</option>
+				<option className={styles.options} key={option.id} value={option.name}>{option.name}</option>
 			))}
 		</select>
 	</>

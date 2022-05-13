@@ -10,6 +10,7 @@
 .addNoteWrapper {
   display: grid;
   grid-template-rows: 25px repeat(2, (25px 35px)) 25px 1fr;
+  grid-template-columns: 100%;
   position: fixed;
   top: 25px;
   right: 25px;

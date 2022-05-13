@@ -4,11 +4,17 @@
   width: 100%;
   // padding: 10px;
   border-radius: 10px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
 
   & i {
     padding: 10px;
     font-size: 1.5rem;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+    }
   }
 }
 
@@ -21,9 +27,10 @@
   font-size: 1.5rem;
   background: transparent;
   color: white;
+  
 
   &:focus {
     outline: none;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.4);
   }
 }

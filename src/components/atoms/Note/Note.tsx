@@ -24,8 +24,8 @@ export const Note = ({ id, title, content, category,  createAt }: Props) => {
 
 	return (
 		<article className={styles.wrapper}>
-			<div className={styles.note} style={{ background: color}}>
-				<div className={styles.titleBlock}>
+			<div className={styles.note}>
+				<div className={styles.titleBlock} style={{borderColor: color}}>
 					<h2 className={styles.title}>{title}</h2>
 					<div className={styles.buttonWrapper}>
 						<button onClick={handlerPreviewNote} className={styles.btn}>
@@ -41,7 +41,7 @@ export const Note = ({ id, title, content, category,  createAt }: Props) => {
 				</div>
 				<p className={styles.content}>{content}</p>
 			</div>
-			<small className={styles.date} style={{ background: color }}>
+			<small className={styles.date}>
 				<div className={styles.dateOverlay}>
 					Create at: {new Date(createAt).toLocaleDateString()}
 				</div>

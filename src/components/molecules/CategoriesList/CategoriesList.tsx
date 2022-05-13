@@ -11,7 +11,7 @@ export const CategoriesList = () => {
 			<h3>Select a category to delete:</h3>
 			<div className={styles.wrapper}>
 				<div className={styles.removeBlockWrapper}>
-					{categories.map(({id, name, color}) => (
+					{categories.sort((a, b) => a.name.length - b.name.length).map(({id, name, color}) => (
 						<RemoveCategoryButton key={id} id={id} name={name} categoryColor={color} />
 					))}
 				</div>

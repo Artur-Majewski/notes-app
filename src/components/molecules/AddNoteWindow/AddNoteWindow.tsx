@@ -62,7 +62,7 @@ export const AddNoteWindow = ({ handleAddNoteClose }: Props) => {
 			></div>
 			<section className={styles.addNoteWrapper}>
 				<CardTitle title='Add new note'/>
-				<Input name='title' type='text' value={formValues.title} handlerFunction={handleInputChange}/> 
+				<Input name='title' type='text' maxLength={18} value={formValues.title} handlerFunction={handleInputChange}/> 
 				<Select name='category' value={formValues.category} options={categories} handlerFuntion={handleInputChange} isLabel/>
 				<Textarea name='content' value={formValues.content} handlerFunction={handleInputChange}/>
 				<FormButton name='Add' functionality={handleSubmit}/>

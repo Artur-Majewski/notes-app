@@ -16,15 +16,13 @@ export const RemoveCategoryButton = ({ id, name, categoryColor }: Props) => {
 		<div className={styles.btnWrapper}>
 			<button
 				key={id}
+				style={{color: categoryColor}}
 				className={styles.btn}
 				onClick={() => handelRemoveCategory(id)}
 			>
-				{name}
+				<i className="fa-solid fa-circle-minus"></i>
 			</button>
-			<i
-				className='fa-solid fa-delete-left'
-				style={{ color: categoryColor }}
-			></i>
+			<p className={styles.categoryName}>{name}</p>
 		</div>
 	);
 };

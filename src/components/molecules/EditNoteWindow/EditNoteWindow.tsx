@@ -63,7 +63,7 @@ export const EditNoteWindow = () => {
 			></div>
 			<section className={styles.editNoteWrapper}>
 				<CardTitle title='Edit note'/>
-				<Input name='title' type='text' value={formValues.title} handlerFunction={handleInputChange}/>
+				<Input name='title' type='text' maxLength={18} value={formValues.title} handlerFunction={handleInputChange}/>
 				<Select name='category' value={formValues.category} options={categories} handlerFuntion={handleInputChange} isLabel/>
 				<Textarea name='content' value={formValues.content} handlerFunction={handleInputChange}/>
 				<FormButton name='Edit' functionality={handleSubmit}/>

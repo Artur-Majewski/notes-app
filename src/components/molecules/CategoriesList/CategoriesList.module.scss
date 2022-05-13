@@ -8,12 +8,9 @@
 }
 
 .removeBlockWrapper {
-  display: grid;
-  grid-template-columns: 1fr;
-
-  @media (min-width: 520px) {
-    grid-template-columns: 1fr 1fr;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 
